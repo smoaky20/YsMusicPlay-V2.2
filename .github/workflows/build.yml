@@ -20,17 +20,19 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Extract project ZIP
+      - name: Extract V2.2 project
         run: |
           mkdir project
-          unzip -o YsMusicPlay_V2_2_TEST.zip -d project
+          unzip -o YsMusicPlay_V2_2_FULL_DEV.zip -d project
           cp project/settings.gradle.kts .
           cp project/build.gradle.kts .
           cp project/gradle.properties .
           cp -R project/app .
 
-      - name: Setup Gradle
+      - name: Setup Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
 
       - name: Build APK
         run: gradle --no-daemon assembleDebug
